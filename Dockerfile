@@ -1,4 +1,4 @@
-FROM debian:testing-20190708
+FROM debian:latest
 
 # RUN apt-get update && apt-get install -q -y locales python3 python3-pip python3-setuptools python3-numpy python3-pandas libpq-dev python3-gdal libgdal-dev python3-geopandas
 RUN apt-get update && \
@@ -11,12 +11,16 @@ RUN apt-get update && \
       wget
 
 # Set locale
-RUN echo "pt_BR.UTF-8 UTF-8" > /etc/locale.gen
+# RUN echo "pt_BR.UTF-8 UTF-8" > /etc/locale.gen
 RUN locale-gen pt_BR.UTF-8
 RUN update-locale pt_BR.UTF-8
 ENV LC_ALL pt_BR.UTF-8
-ENV LC_ALL=C.UTF-8
-ENV LANG=C.UTF-8
+ENV LC_TIME pt_BR.UTF-8
+ENV LANG pt_BR.UTF-8
+ENV LANGUAGE pt_BR.UTF-8
+RUN sed -i -e "s/# pt_BR.*/pt_BR.UTF-8 UTF-8/" /etc/locale.gen && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=pt_BR.UTF-8
 
 # Create deploy user
 RUN useradd --shell=/bin/bash --home=/srv/deploy/ --create-home deploy
