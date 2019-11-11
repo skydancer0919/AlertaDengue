@@ -30,15 +30,15 @@ PARENT_BASE_DIR = os.path.dirname(BASE_DIR)
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'jsiz#@_pzaf(l15lldp*bj_6svwj*m$t-cs1yud94kw10una' #config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = False #config('DEBUG', cast=bool)
 
-ADMINS = config('ADMINS', cast=read_admins, default='')
+ADMINS = "NAMD EMap,namd.emap@gmail.com;Ivan Ogasawara,ivan.ogasawara@gmail.com"#config('ADMINS', cast=read_admins, default='')
 
 ALLOWED_HOSTS = ["alerta.dengue.mat.br", "info.dengue.mat.br"]
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+#ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Application definition
@@ -146,10 +146,10 @@ LEAFLET_CONFIG = {
     'RESET_VIEW': False,
 }
 
-PSQL_DB = config('PSQL_DB', default="dengue")
-PSQL_USER = config('PSQL_USER', default="dengueadmin")
-PSQL_HOST = config('PSQL_HOST', default="localhost")
-PSQL_PASSWORD = config('PSQL_PASSWORD')
+PSQL_DB = 'dengue' # config('PSQL_DB', default="dengue")
+PSQL_USER = 'dengueadmin' # config('PSQL_USER', default="dengueadmin")
+PSQL_HOST = '172.16.4.27' # config('PSQL_HOST', default="localhost")
+PSQL_PASSWORD = 'aldengue' # config('PSQL_PASSWORD')
 
 DATABASE_ROUTERS = ['manager.router.DatabaseAppsRouter']
 DATABASE_APPS_MAPPING = {
